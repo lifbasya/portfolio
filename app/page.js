@@ -1,103 +1,204 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+const projects = [
+  {
+    title: "SPACE TRAVEL WEBSITE",
+    image: "space-img.png",
+    tech: ["NEXT JS", "TAILWIND"],
+    link: "https://spacetravel-alif.netlify.app/",
+  },
+  {
+    title: "SIMPLE DARK FORM",
+    image: "form-img.png",
+    tech: ["HTML", "CSS", "JAVASCRIPT"],
+    link: "https://alif-signupscreen.netlify.app/",
+  },
+  {
+    title: "QR CODE GENERATOR",
+    image: "qr-img.png",
+    tech: ["HTML", "CSS", "JAVASCRIPT"],
+    link: "https://qrcode-alif.netlify.app/",
+  },
+  {
+    title: "TICTACTOE GAME",
+    image: "tictac-img.png",
+    tech: ["REACT", "TAILWIND"],
+    link: "https://tictactoe-alif.netlify.app/",
+  },
+  // Tambah lebih banyak data sesuai kebutuhan
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <>
+      <main className="w-full px-0 lg:px-10 py-14 lg:py-16">
+        <section className="flex flex-col gap-14 lg:gap-0 lg:flex-row justify-center lg:justify-between items-center">
+          {/* Text content */}
+          <div
+            className="w-full max-w-[588px] flex flex-col gap-10 lg:gap-16 justify-center"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <div className="flex flex-col gap-6 sm:gap-4 text-center lg:text-left">
+              <h1 className="text-5xl font-semibold lg:text-6xl leading-14 lg:leading-16">
+                HELLO, I AM ALIF BASYA
+              </h1>
+              <p className="font-medium text-base lg:text-lg roboto">
+                Based in Indonesia, I am a fullstack developer I’m constantly
+                learning and growing right now.
+              </p>
+            </div>
+            <div className="text-center lg:text-left">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("footer")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="font-semibold text-lg lg:text-xl border-b-2 w-fit cursor-pointer"
+              >
+                Contact Me
+              </button>
+            </div>
+          </div>
+
+          {/* Image */}
+          <div
+            className="flex flex-col gap-4 justify-center items-center"
+          >
+            <img
+              src="head.svg"
+              alt="myhead"
+              className="max-w-38"
+              style={{
+                animation: "bobbing 1.5s ease-in-out infinite",
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+            <style>
+              {`
+               @keyframes bobbing {
+                 0%, 100% { transform: translateY(0); }
+                 50% { transform: translateY(-10px); }
+               }
+             `}
+            </style>
+            <img src="body.svg" alt="myface" className="max-w-64" />
+          </div>
+        </section>
+        <hr className="my-12 lg:my-16 border border-[#CBCBCB]" />
+        <section
+          className="flex flex-col gap-10 lg:gap-14 project-container"
+        >
+          {/* Judul PROJECT dengan animasi dari kiri */}
+          <h2
+            className="text-3xl md:text-4xl font-semibold lg:text-6xl"
           >
-            Read our docs
-          </a>
-        </div>
+            PROJECT
+          </h2>
+
+          {/* Grid project muncul dengan animasi */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 justify-between gap-15"
+          >
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                onClick={() => window.open(project.link, "_blank")}
+                className="cursor-pointer flex flex-col gap-5 w-full transition-all duration-700 transform"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full transform transition-transform duration-300 hover:scale-105 project-img"
+                />
+                <div className="flex flex-col gap-2">
+                  <h4 className="font-semibold text-xl">{project.title}</h4>
+                  <div className="roboto flex gap-4 text-base">
+                    {project.tech.map((item, idx) => (
+                      <p key={idx}>{item}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      <footer
+        className="w-full px-0 lg:px-10 py-16"
+        id="footer"
+      >
+        {/* Strip atas */}
+        <div
+          className="flex mb-12 justify-center lg:justify-start"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <div className="bg-black w-14 h-4"></div>
+          <div className="bg-white w-14 h-4"></div>
+        </div>
+
+        {/* Konten utama */}
+        <div
+          className="flex flex-col text-center lg:text-left lg:flex-row justify-center lg:justify-between gap-10"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          {/* Kiri */}
+          <div
+            className="flex flex-col gap-10 lg:gap-14 w-full lg:max-w-xl"
+          >
+            <div className="flex flex-col gap-8">
+              <h2 className="font-semibold text-5xl lg:text-6xl">
+                Can we create together ?
+              </h2>
+              <p className="text-base font-medium roboto">
+                Let’s create something amazing I’m always open to new
+                opportunities and collaborations.
+              </p>
+            </div>
+            <div className="flex gap-6 sm:gap-8 lg:gap-12 justify-center lg:justify-start items-center flex-wrap">
+              <Link href="https://www.kodein.sch.id/" target="_blank"><img src="kodein.svg" className="w-10 transition-transform duration-200 hover:scale-105" style={{ filter: 'none !important' }} /></Link>
+              <Link
+                href="https://github.com/lifbasya"
+                target="_blank"
+                className="font-medium lg:text-xl text-lg border-b-2 border-transparent hover:border-black transition-all duration-300 hover"
+              >
+                GITHUB{" "}
+                <span className="font-bold text-[22px] ml-0.5 md:ml-2">↗</span>
+              </Link>
+              <Link
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=alifattallahbasya@gmail.com"
+                target="_blank"
+                className="font-medium lg:text-xl text-lg border-b-2 border-transparent hover:border-black transition-all duration-300 hover"
+              >
+                EMAIL{" "}
+                <span className="font-bold text-[22px] ml-0.5 md:ml-2">↗</span>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/alifbasya/"
+                target="_blank"
+                className="font-medium lg:text-xl text-lg border-b-2 border-transparent hover:border-black transition-all duration-300 hover"
+              >
+                LINKEDIN{" "}
+                <span className="font-bold text-[22px] ml-0.5 md:ml-2">↗</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Kanan: Panah scroll to top */}
+          <div
+            className="flex flex-col justify-center items-center"           
+          >
+            <div
+              className="bg-white px-6 py-5 rounded-2xl cursor-pointer hover:opacity-90 warna"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <img src="Arrow.svg" alt="logo" className="w-4 lg:w-5" />
+            </div>
+            <div className="bg-black lg:w-0.5 h-full garis"></div>
+          </div>
+        </div>
       </footer>
-    </div>
+    </>
   );
 }

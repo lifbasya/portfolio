@@ -20,7 +20,54 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:var(--font-poppins), Arial, Helvetica, sans-serif;
+}
+
+.roboto {
+  font-family: var(--font-roboto-mono), Arial, Helvetica, sans-serif;
+}
+
+/* globals.css */
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Manual dark mode styles */
+.dark-mode body {
+  background-color: #000;
+  color: white;
+}
+
+.dark-mode nav {
+  background-color: #111111;
+  border-color: #444;
+}
+
+.dark-mode img:not(.project-img) {
+  filter: invert(1) brightness(1.2);
+}
+
+/* Keep project section normal */
+.project-container {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.dark-mode .project-container img {
+  filter: none !important;
+}
+
+.dark-mode .warna {
+  border: 3px solid white !important;
+  background-color: #000 !important;
+}
+
+.dark-mode .garis {
+  background-color: white;
+}
+
+.dark-mode .hover:hover {
+  border-color:#ffffff !important;
 }
