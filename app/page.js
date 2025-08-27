@@ -11,10 +11,10 @@ const projects = [
     link: "https://spacetravel-alif.netlify.app/",
   },
   {
-    title: "SIMPLE DARK FORM",
-    image: "form-img.png",
-    tech: ["HTML", "CSS", "JAVASCRIPT"],
-    link: "https://alif-signupscreen.netlify.app/",
+    title: "TO DO LIST APP",
+    image: "todolist-img.png",
+    tech: ["NEXT JS", "TAILWIND"],
+    link: "https://todolist-alif.vercel.app/",
   },
   {
     title: "QR CODE GENERATOR",
