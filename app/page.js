@@ -28,6 +28,12 @@ const projects = [
     tech: ["REACT", "TAILWIND"],
     link: "https://tictactoe-alif.netlify.app/",
   },
+  {
+    title: "WEATHER APP",
+    image: "weather-img.png",
+    tech: ["REACT", "TAILWIND"],
+    link: "https://weatherapp-alif.vercel.app/",
+  },
   // Tambah lebih banyak data sesuai kebutuhan
 ];
 
